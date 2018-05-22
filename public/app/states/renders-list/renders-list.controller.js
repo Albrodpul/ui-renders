@@ -107,7 +107,15 @@ angular
                                                       .post(apiURL, data)
                                                       .then(function (response) {
                                                             $scope.error = "";
-                                                            $state.reload();
+                                                            (function () {
+                                                                  if (window.localStorage) {
+                                                                        if (!localStorage.getItem('firstLoad')) {
+                                                                              localStorage['firstLoad'] = true;
+                                                                              window.location.reload();
+                                                                        } else
+                                                                              localStorage.removeItem('firstLoad');
+                                                                  }
+                                                            })();
                                                       }, function (err) {
                                                             if (err.status != 201) {
                                                                   $scope.error = "This render already exists. If you want to upload it again, you must delete it first";

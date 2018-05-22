@@ -16,17 +16,6 @@ angular
                         uiURL = "https://ui-renders.herokuapp.com/app/states/renders";
                   }
 
-                  $state.go("renderizer");
-                  (function () {
-                        if (window.localStorage) {
-                              if (!localStorage.getItem('firstLoad')) {
-                                    localStorage['firstLoad'] = true;
-                                    window.location.reload();
-                              } else
-                                    localStorage.removeItem('firstLoad');
-                        }
-                  })();
-
                   $http.get(apiURL)
                         .then(function (response) {
                               var idlist = [];
